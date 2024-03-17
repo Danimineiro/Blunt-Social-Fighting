@@ -11,8 +11,8 @@ namespace BluntSocialFighting
 
         static BluntSocialFightingPatcher()
         {
-            Log.Message($"<color=orange>[DN] Blunt Social Fighting</color> Hello world!");
-            harmony.Patch(typeof(Verb).GetMethod(nameof(Verb.Available)), postfix: new HarmonyMethod(typeof(BluntSocialFightingPatcher), nameof(BluntSocialFightingPatcher.IsAvailablePatch)));
+            harmony.Patch(typeof(Verb).GetMethod(nameof(Verb.Available)), postfix: new HarmonyMethod(typeof(BluntSocialFightingPatcher), nameof(IsAvailablePatch)));
+            Log.Message($"<color=orange>[DN] Blunt Social Fighting</color> No more sharp attacks during social fights!");
         }
 
         public static void IsAvailablePatch(Verb __instance, ref bool __result)
@@ -21,9 +21,9 @@ namespace BluntSocialFighting
             if (PawnCanAttackSharp(pawn)) return;
 
             __result &= __instance.GetDamageDef()?.armorCategory != DamageArmorCategoryDefOf.Sharp;
-            Log.Message($"Attack with {__instance.GetDamageDef()?.LabelCap ?? "NULL"} attacked {(__result ? "successfully!" : "unsuccessfully!")}");
+            //Log.Message($"Attack with {__instance.GetDamageDef()?.LabelCap ?? "NULL"} attacked {(__result ? "successfully!" : "unsuccessfully!")}");
         }
 
-        private static bool PawnCanAttackSharp(Pawn pawn) => !pawn.InMentalState || pawn.MentalStateDef != MentalStateDefOf.SocialFighting || pawn?.story?.traits?.HasTrait(TraitDefOf.Bloodlust) == true;
+        private static bool PawnCanAttackSharp(Pawn pawn) => pawn.MentalStateDef != MentalStateDefOf.SocialFighting || pawn.story?.traits.HasTrait(TraitDefOf.Bloodlust) == true;
     }
 }
