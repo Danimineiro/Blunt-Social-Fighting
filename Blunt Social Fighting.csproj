@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net481</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
 		<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
@@ -9,16 +9,12 @@
 		<RootNamespace>BluntSocialFighting</RootNamespace>
 		<OutputPath>1.6/Assemblies</OutputPath>
 		<Configurations>Debug;Release</Configurations>
+		<LangVersion>13</LangVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4503-beta" />
 		<PackageReference Include="Lib.Harmony" Version="2.3.6" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="1.4\Assemblies\" />
-		<Folder Include="1.6\" />
 	</ItemGroup>
 
 </Project>
